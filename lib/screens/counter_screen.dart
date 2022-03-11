@@ -10,6 +10,21 @@ class CounterScreen extends StatefulWidget {
 class _CounterScreenState extends State<CounterScreen> {
   int counter = 0;
 
+  void addUnit() {
+    counter++;
+    setState(() {});
+  }
+
+  void removeUnit() {
+    counter--;
+    setState(() {});
+  }
+
+  void resetUnit() {
+    counter = 0;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     const fontSize25 = TextStyle(fontSize: 25);
@@ -31,34 +46,47 @@ class _CounterScreenState extends State<CounterScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
         ),
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          FloatingActionButton(
-            onPressed: () {
-              counter++;
-              setState(() {});
-            },
-            child: const Icon(Icons.add),
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              counter = 0;
-              setState(() {});
-            },
-            child: const Icon(Icons.replay_outlined),
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              counter--;
-              setState(() {});
-            },
-            child: const Icon(Icons.remove_outlined),
-          ),
-        ],
+      floatingActionButton: CustomFloatingActionButton(
+        addCounter: addUnit,
+        removeCounter: removeUnit,
+        resetCounter: resetUnit,
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterFloat,
+    );
+  }
+}
+
+class CustomFloatingActionButton extends StatelessWidget {
+  final Function addCounter;
+  final Function removeCounter;
+  final Function resetCounter;
+
+  const CustomFloatingActionButton({
+    Key? key,
+    required this.addCounter,
+    required this.removeCounter,
+    required this.resetCounter,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        FloatingActionButton(
+          onPressed: () => addCounter(),
+          child: const Icon(Icons.add),
+        ),
+        FloatingActionButton(
+          onPressed: () => resetCounter(),
+          child: const Icon(Icons.replay_outlined),
+        ),
+        FloatingActionButton(
+          onPressed: () => removeCounter(),
+          child: const Icon(Icons.remove_outlined),
+        ),
+      ],
     );
   }
 }
