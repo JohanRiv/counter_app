@@ -1,6 +1,10 @@
 # counter_app
 
-A new Flutter project.
+A new basic Flutter project.
+
+In this project you find a simple counter app, this app is to practice the use of Floating Button using a Udemy Course.
+
+![Captura de Pantalla 2022-03-14 a la(s) 9 09 29 p m](https://user-images.githubusercontent.com/39147964/158291889-5a078695-7fd6-4f70-81ab-f48e0ae542cb.png)
 
 ## Getting Started
 
